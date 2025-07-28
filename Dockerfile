@@ -8,8 +8,8 @@ WORKDIR /usr/src/app
 # COPY package.json and package-lock.json into root of WORKDIR
 COPY package*.json ./
 
-# Executes commands
-RUN npm ci
+mkdir /.npm && chown -R 1000840001:1000840001 /.npm && npm ci
+USER 1000840001
 
 # Copies files from source to destination, in this case the root of the build context
 # into the root of the WORKDIR
