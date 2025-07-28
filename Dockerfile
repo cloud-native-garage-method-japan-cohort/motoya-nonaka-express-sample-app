@@ -9,7 +9,8 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 USER 1000840000
-RUN mkdir /.npm && chown -R 1000840000:1000840000 /.npm && npm ci
+ENV HOME=/usr/src/app
+RUN mkdir -p  $HOME/.npm && chown -R 1000840000:1000840000 $HOME/.npm && npm ci
 
 # Copies files from source to destination, in this case the root of the build context
 # into the root of the WORKDIR
